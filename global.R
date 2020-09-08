@@ -6,21 +6,21 @@ library(knitr)
 library(kableExtra)
 
 # get all the brewery data through the API
-# data <- list()
-# i = 1
-# while (TRUE) {
-#   res = GET("https://api.openbrewerydb.org/breweries",
-#             query = list(per_page = 50, page = i))
-#   data_from_api = fromJSON(rawToChar(res$content))
-#   if (length(data_from_api) == 0) {
-#     break
-#   }
-#   data[[i]] <- data_from_api
-#   i <- i + 1
-# }
-# brewery_data <- bind_rows(data) %>%
-#   mutate(longitude = as.numeric(longitude),
-#          latitude = as.numeric(latitude))
+ data <- list()
+ i = 1
+while (TRUE) {
+  res = GET("https://api.openbrewerydb.org/breweries",
+            query = list(per_page = 50, page = i))
+  data_from_api = fromJSON(rawToChar(res$content))
+  if (length(data_from_api) == 0) {
+    break
+  }
+  data[[i]] <- data_from_api
+  i <- i + 1
+}
+brewery_data <- bind_rows(data) %>%
+  mutate(longitude = as.numeric(longitude),
+         latitude = as.numeric(latitude))
 
 # leaflet map
 brewery_data <- brewery_data %>%
