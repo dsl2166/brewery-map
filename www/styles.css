@@ -1,0 +1,12 @@
+#state_panel {
+    background-color: white;
+    opacity: 0.7;
+}
+
+#state_panel:hover {
+    opacity: 0.9;
+}
+
+.panel {
+    overflow-y: scroll;
+}
